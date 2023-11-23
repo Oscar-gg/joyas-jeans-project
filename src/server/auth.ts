@@ -10,6 +10,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 import { env } from "~/env";
 import { db } from "~/server/db";
+import { updateRole } from "~/server/authroles";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -38,6 +39,21 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  events: {
+    signIn: async (event) => {
+      // Compute role and update the user just once, when signing in.
+      if (event.user.email) {
+        await db.user.update({
+          where: {
+            email: event.user.email,
+          },
+          data: {
+            role: await updateRole(event.user.email, db),
+          },
+        });
+      }
+    },
+  },
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
