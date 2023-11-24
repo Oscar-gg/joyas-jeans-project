@@ -6,6 +6,7 @@ import { api } from "~/utils/api";
 
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
+  const mutation = api.product.uploadData.useMutation();
 
   return (
     <>
@@ -48,6 +49,9 @@ export default function Home() {
               {hello.data ? hello.data.greeting : "Loading tRPC query..."}
             </p>
             <AuthShowcase />
+            <button className="m-2 rounded-lg bg-white p-2" onClick={() => {mutation.mutate()}}>
+              Upload data
+            </button>
           </div>
         </div>
       </main>
@@ -60,7 +64,7 @@ function AuthShowcase() {
 
   const { data: secretMessage } = api.post.getSecretMessage.useQuery(
     undefined, // no input
-    { enabled: sessionData?.user !== undefined }
+    { enabled: sessionData?.user !== undefined },
   );
 
   return (

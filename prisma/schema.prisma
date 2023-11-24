@@ -105,7 +105,6 @@ model Product {
 model Brand {
     id        String      @id @default(cuid())
     name      String      @unique
-    brandsId  String?
     modelName ModelName[]
     product   Product[]
 }
@@ -121,7 +120,6 @@ model Color {
     id        String    @id @default(cuid())
     name      String    @unique
     products  Product[]
-    productId String?
 }
 
 model Fit {
