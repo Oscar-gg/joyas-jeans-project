@@ -7,6 +7,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
+        head: ["'Bebas Neue', sans-serif;"]
       },
     },
   },
