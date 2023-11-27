@@ -79,11 +79,13 @@ export const compareRole = ({
   requiredRole,
   userRole,
 }: {
-  requiredRole: string;
+  requiredRole: string | undefined;
   userRole: string | undefined;
 }) => {
+  if (!requiredRole) return 1;
   if (requiredRole === "unauthenticated") return 1;
-
+  if (!userRole) return 0;
+  
   try {
     const validRole = castToRole(userRole);
     const t = roleOrUpper[requiredRole];
