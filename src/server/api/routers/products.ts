@@ -23,4 +23,105 @@ export const productRouter = createTRPCRouter({
       return false;
     }
   }),
+
+  getProductById: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const product = await ctx.db.product.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+
+      return product;
+    }),
+
+  getProductIds: publicProcedure
+    .input(
+      z.object({
+        minPrice: z.number().optional(),
+        maxPrice: z.number().optional(),
+        colorId: z.string().optional(),
+        fitID: z.string().optional(),
+        brandId: z.string().optional(),
+        modelId: z.string().optional(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const products = await ctx.db.product.findMany({
+        where: {
+          AND: [
+            {
+              price: {
+                gte: input.minPrice ?? 0,
+              },
+            },
+            {
+              price: {
+                lte: input.maxPrice ?? 100000000,
+              },
+            },
+            {
+              colorId: {
+                contains: input.colorId ?? "",
+              },
+            },
+            {
+              fitId: {
+                contains: input.fitID ?? "",
+              },
+            },
+            {
+              brandId: {
+                contains: input.brandId ?? "",
+              },
+            },
+            {
+              modelId: {
+                contains: input.modelId ?? "",
+              },
+            },
+          ],
+        },
+        select: {
+          id: true,
+        },
+      });
+
+      return products.map((product) => product.id);
+    }),
+
+  modifyProduct: adminProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        price: z.number(),
+        description: z.string(),
+        colorId: z.string(),
+        fitId: z.string(),
+        brandId: z.string(),
+        modelId: z.string(),
+        image: z.string(),
+        availableCount: z.number(),
+        soldCount: z.number(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const product = await ctx.db.product.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          price: input.price,
+          colorId: input.colorId,
+          fitId: input.fitId,
+          brandId: input.brandId,
+          modelId: input.modelId,
+          availableCount: input.availableCount,
+          soldCount: input.soldCount,
+        },
+      });
+
+      return product;
+    }),
 });
