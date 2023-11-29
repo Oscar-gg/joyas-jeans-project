@@ -15,8 +15,10 @@ export const Layout = ({
 }) => {
   const routes = [
     { name: "Home", path: "/" },
-    { name: "Services", path: "/services" },
     { name: "Levi", path: "/levi" },
+    { name: "Wrangler", path: "/wrangler" },
+    { name: "George", path: "/george" },
+    { name: "Rustler", path: "/rustler" },
     { name: "Admin", path: "/admin", visibility: "admin" },
   ];
 

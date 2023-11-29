@@ -3,9 +3,9 @@ import { Layout } from "~/components/layout/Layout";
 
 import { api } from "~/utils/api";
 
-export default function Levi() {
+export default function Wrangler() {
   const modelsAvailable = api.model.getModelsNames.useQuery({
-    brandName: "LEVI'S",
+    brandName: "WRANGLER",
   });
 
   return (
