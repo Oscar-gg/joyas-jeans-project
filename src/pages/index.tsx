@@ -11,46 +11,86 @@ export default function Home() {
 
   return (
     <Layout>
-      <main className=" flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
+      <section className="flex h-screen flex-col items-center justify-center bg-gray-900 text-white md:flex-row">
+        <div className="p-8 text-center md:w-1/2 md:text-left">
+          <h1 className="font-head text-4xl font-bold">
+            Los mejores Jeans... al MEJOR precio.
           </h1>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/usage/first-steps"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">First Steps →</h3>
-              <div className="text-lg">
-                Just the basics - Everything you need to know to set up your
-                database and authentication.
-              </div>
-            </Link>
-            <Link
-              className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-              href="https://create.t3.gg/en/introduction"
-              target="_blank"
-            >
-              <h3 className="text-2xl font-bold">Documentation →</h3>
-              <div className="text-lg">
-                Learn more about Create T3 App, the libraries it uses, and how
-                to deploy it.
-              </div>
-            </Link>
-          </div>
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-2xl text-white">
-              {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-            </p>
-            <AuthShowcase />
-            {/* <button className="m-2 rounded-lg bg-white p-2" onClick={() => {mutation.mutate()}}>
-              Upload data
-            </button> */}
-          </div>
+          <button className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">
+            Compra Ahora
+          </button>
         </div>
-      </main>
+
+        <div className="p-8 md:w-1/2">
+          <img
+            src="https://media1.popsugar-assets.com/files/thumbor/b0rTsnJv_zrjHN12CqokFY4T_JQ=/0x0:1456x1456/fit-in/792x792/filters:format_auto():upscale()/2023/06/12/874/n/1922564/dbb82869648779136c7a15.00616962_.jpg"
+            alt="Jeans Model"
+            className="w-full rounded-lg shadow-lg"
+          />
+        </div>
+      </section>
+
+      <div className="container mx-auto flex flex-wrap justify-center">
+        <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
+          <a href="">
+            <div className="card rounded-lg bg-white p-6 shadow-lg">
+              <h2 className="mb-2 justify-center text-xl font-semibold">
+                SHOP LEVIS
+              </h2>
+              <img
+                className=""
+                src="https://www.designscene.net/wp-content/uploads/2021/05/Levis-501-Micaiah-Carter-04.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+
+        <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
+          <a href="">
+            <div className="card rounded-lg bg-white p-6 shadow-lg">
+              <h2 className="mb-2 justify-center text-xl font-semibold">
+                SHOP WRANGLER
+              </h2>
+              <img
+                className=""
+                src="https://images.wrangler.com/is/image/Wrangler/47MACMS-HERO?$KDP-XLARGE$"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+
+        <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
+          <a href="">
+            <div className="card rounded-lg bg-white p-6 shadow-lg">
+              <h2 className="mb-2 justify-center text-xl font-semibold">
+                SHOP RUSTLER
+              </h2>
+              <img
+                className=""
+                src="https://i.pinimg.com/736x/93/c3/81/93c38144c2f73e0e4ccc0f4d73681772.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+
+        <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
+          <a href="">
+            <div className="card rounded-lg bg-white p-6 shadow-lg">
+              <h2 className="mb-2 justify-center text-xl font-semibold">
+                SHOP GEORGE
+              </h2>
+              <img
+                className=""
+                src="https://img.shopstyle-cdn.com/sim/03/8f/038f4ab10e7d86c725f25fc3cda44f54_xlarge/ebony-navy-mid-rise-skinny-fit-jeans-dark-denim.jpg"
+                alt=""
+              />
+            </div>
+          </a>
+        </div>
+      </div>
     </Layout>
   );
 }
