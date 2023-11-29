@@ -1,0 +1,90 @@
+{
+  "Brands": ["LEVI'S", "WRANGLER", "GEORGE", "RUSTLER"],
+
+  "Colors": [
+    "azul",
+    "negro",
+    "dark wash",
+    "medium wash",
+    "light wash",
+    "beige",
+    "azul petróleo",
+    "verde",
+    "café",
+    "caqui",
+    "gris"
+  ],
+
+  "BrandsModels": [
+    {
+      "name": "LEVI'S",
+      "models": [
+        "501",
+        "502",
+        "505",
+        "507",
+        "510",
+        "511",
+        "512",
+        "514",
+        "550",
+        "551"
+      ]
+    },
+    {
+      "name": "WRANGLER",
+      "models": [
+        "Texas",
+        "Arizona",
+        "Greensboro",
+        "Redding",
+        "Larston",
+        "Bryson",
+        "Cargo",
+        "Comfort flex"
+      ]
+    }
+  ],
+  "Fit": [
+    {
+      "name": "Slim",
+      "description": "Un pantalón ajustado que es más estrecho en la pierna, brindando un aspecto moderno y entallado."
+    },
+    {
+      "name": "Slim Taper",
+      "description": "Combina el ajuste slim con un estrechamiento gradual hacia el tobillo, creando una silueta elegante y contemporánea."
+    },
+    {
+      "name": "Taper",
+      "description": " Se estrecha desde la rodilla hasta el tobillo, ofreciendo una abertura de pierna más estrecha mientras mantiene un poco más de espacio en el muslo."
+    },
+    {
+      "name": "Relaxed",
+      "description": "Un ajuste más holgado con espacio adicional en el asiento, muslo y pierna, brindando comodidad y un aspecto más casual."
+    },
+    {
+      "name": "Regular",
+      "description": "Un pantalón de corte recto estándar con un ancho consistente desde la cadera hasta el tobillo, ofreciendo un estilo clásico y atemporal."
+    },
+    {
+      "name": "Skinny",
+      "description": " Un estilo muy ajustado y ceñido al cuerpo, con una abertura de pierna estrecha en todo su recorrido, creando un aspecto moderno y elegante."
+    },
+    {
+      "name": "Skinny Taper",
+      "description": "Combina el ajuste skinny con un estrechamiento gradual hacia el tobillo para un aspecto contemporáneo y estilizado."
+    },
+    {
+      "name": "Straight",
+      "description": "Presenta un ancho constante desde la cadera hasta el tobillo, ofreciendo un estilo clásico y versátil que no es ni demasiado ajustado ni holgado."
+    },
+    {
+      "name": "Baggy",
+      "description": "Se caracteriza por un ajuste suelto y amplio en la cadera, muslo y pierna, brindando un estilo relajado y cómodo con una abertura de pierna más ancha."
+    },
+    {
+      "name": "Bootcut",
+      "description": "Pierna ligeramente ajustada en la parte superior y se ensancha ligeramente desde la rodilla hasta el tobillo, permitiendo que quepan cómodamente sobre las botas. Combina la elegancia de un corte recto con un toque sutil de amplitud en la parte inferior para facilitar su uso con calzado más grande, como botas."
+    }
+  ]
+}
