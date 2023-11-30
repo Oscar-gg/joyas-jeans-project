@@ -22,11 +22,15 @@ export const Layout = ({
 
         ...brandRoutes,
         { name: "Catálogo", path: "/catalogo" },
+        { name: "Nosotros", path: "/nosotros" },
+        { name: "AVISO", path: "/aviso" },
         { name: "Admin", path: "/admin", visibility: "admin" },
       ]
     : [
         { name: "Home", path: "/" },
         { name: "Catálogo", path: "/catalogo" },
+        { name: "Nosotros", path: "/nosotros" },
+        { name: "AVISO", path: "/aviso" },
         { name: "Admin", path: "/admin", visibility: "admin" },
       ];
 
