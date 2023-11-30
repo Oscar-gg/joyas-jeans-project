@@ -18,6 +18,8 @@ export const Layout = ({
     { name: "Services", path: "/services" },
     { name: "Levi", path: "/levi" },
     { name: "Admin", path: "/admin", visibility: "admin" },
+    { name: "Nosotros", path: "/nosotros"},
+    { name: "AVISO", path: "/aviso"},
   ];
 
   return (
