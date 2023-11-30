@@ -1,11 +1,14 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
+import { LandingPageBrand } from "~/components/card/LandingPageBrand";
 import { Layout } from "~/components/layout/Layout";
 
 import { api } from "~/utils/api";
 
 export default function Home() {
+  const { data: brandsIds } = api.get.getBrandsIds.useQuery();
+
   return (
     <Layout>
       <section className="flex h-screen flex-col items-center justify-center bg-gray-900 text-white md:flex-row">
@@ -28,7 +31,14 @@ export default function Home() {
       </section>
 
       <div className="container mx-auto flex flex-wrap justify-center">
-        <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
+        {brandsIds ? (
+          brandsIds.map((brand) => (
+            <LandingPageBrand brandId={brand.id} key={brand.id} />
+          ))
+        ) : (
+          <p>Cargando...</p>
+        )}
+        {/* <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
           <Link href="/levi">
             <div className="card rounded-lg bg-white p-6 shadow-lg">
               <h2 className="mb-2 justify-center text-xl font-semibold">
@@ -86,7 +96,7 @@ export default function Home() {
               />
             </div>
           </Link>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );

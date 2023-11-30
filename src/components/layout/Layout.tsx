@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Navbar } from "~/components/layout/Navbar";
 import React from "react";
+import { api } from "~/utils/api";
 
 export const Layout = ({
   children,
@@ -13,14 +14,19 @@ export const Layout = ({
   description?: string;
   mainClassName?: string;
 }) => {
-  const routes = [
-    { name: "Home", path: "/" },
-    { name: "Levi", path: "/levi" },
-    { name: "Wrangler", path: "/wrangler" },
-    { name: "George", path: "/george" },
-    { name: "Rustler", path: "/rustler" },
-    { name: "Admin", path: "/admin", visibility: "admin" },
-  ];
+  const { data: brandRoutes } = api.get.getBrandRoutes.useQuery();
+
+  const routes = brandRoutes
+    ? [
+        { name: "Home", path: "/" },
+
+        ...brandRoutes,
+        { name: "Admin", path: "/admin", visibility: "admin" },
+      ]
+    : [
+        { name: "Home", path: "/" },
+        { name: "Admin", path: "/admin", visibility: "admin" },
+      ];
 
   return (
     <>
@@ -32,10 +38,12 @@ export const Layout = ({
           className={mainClassName}
         />
         <link rel="icon" href="/Logo.jpg" />
-        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Genos:wght@600&family=Playfair+Display&family=Raleway&family=Roboto+Condensed&display=swap" rel="stylesheet"></link>
-     
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Genos:wght@600&family=Playfair+Display&family=Raleway&family=Roboto+Condensed&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
       <Navbar routes={routes} />
       <main>{children}</main>

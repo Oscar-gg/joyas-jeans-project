@@ -1,4 +1,4 @@
-import { type RouterOutputs, api } from "~/utils/api";
+import { api } from "~/utils/api";
 import ValidImage from "~/components/general/ValidImage";
 
 export const Model = ({ modelId }: { modelId: string }) => {

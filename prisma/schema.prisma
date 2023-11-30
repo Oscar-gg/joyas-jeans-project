@@ -76,21 +76,22 @@ model Product {
     availableCount Int
     soldCount      Int
 
-    colorId String
-    color   Color     @relation(fields: [colorId], references: [id])
-    fitId   String
-    fit     Fit       @relation(fields: [fitId], references: [id])
-    modelId String
-    model   ModelName @relation(fields: [modelId], references: [name])
+    colorId   String
+    color     Color     @relation(fields: [colorId], references: [id])
+    fitId     String
+    fit       Fit       @relation(fields: [fitId], references: [id])
+    modelId   String
+    model     ModelName @relation(fields: [modelId], references: [name])
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
 
     @@unique([colorId, fitId, modelId])
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
 }
 
 model Brand {
     id        String      @id @default(cuid())
     name      String      @unique
+    image     String      @default("https://www.politix.com.au/on/demandware.static/-/Library-Sites-PolitixSharedLibrary/default/dwf8efd648/Denim%20Range%20Blog%20Banner.jpg")
     modelName ModelName[]
 }
 

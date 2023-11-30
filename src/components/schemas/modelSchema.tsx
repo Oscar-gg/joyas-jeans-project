@@ -9,7 +9,7 @@ export const modelSchema = Yup.object().shape({
     .test("is-img", "La imagen no es valida.", async (value) => {
       if (!value) return true; // Allow null values
 
-      if (value.startsWith("/images/")) return true; // Use image from folder
+      // if (value.startsWith("/images/")) return true; // Use image from folder
 
       const validUrl = await isImgUrl(value);
       return validUrl;

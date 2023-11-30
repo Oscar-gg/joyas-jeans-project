@@ -41,6 +41,42 @@ export const getRouter = createTRPCRouter({
         },
       });
     }),
+  getBrandModelsById: publicProcedure
+    .input(
+      z.object({
+        brandId: z.string().optional(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.modelName.findMany({
+        where: {
+          brandId: input.brandId,
+        },
+        select: {
+          id: true,
+        },
+      });
+    }),
+  getBrandById: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.brand.findUnique({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
+  getBrandsIds: publicProcedure.query(async ({ ctx }) => {
+    return await ctx.db.brand.findMany({
+      select: {
+        id: true,
+      },
+    });
+  }),
 
   getFitIds: publicProcedure
     .input(
@@ -115,6 +151,19 @@ export const getRouter = createTRPCRouter({
               name: true,
             },
           },
+        },
+      });
+    }),
+
+  getModelImageById: publicProcedure
+    .input(z.object({ brandId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      return await ctx.db.modelName.findFirst({
+        where: {
+          brandId: input.brandId,
+        },
+        select: {
+          image: true,
         },
       });
     }),
@@ -231,6 +280,15 @@ export const getRouter = createTRPCRouter({
         select: {
           id: true,
         },
+        orderBy: [
+          {
+            fitId: "asc",
+          },
+          {
+            colorId: "asc",
+          },
+          { modelId: "asc" },
+        ],
       });
     }),
 
@@ -243,6 +301,20 @@ export const getRouter = createTRPCRouter({
     });
 
     return brands.map((brand) => ({ value: brand.id, label: brand.name }));
+  }),
+
+  getBrandRoutes: publicProcedure.query(async ({ ctx, input }) => {
+    const brands = await ctx.db.brand.findMany({
+      select: {
+        id: true,
+        name: true,
+      },
+    });
+
+    return brands.map((brand) => ({
+      name: brand.name,
+      path: `/brand/${brand.id}`,
+    }));
   }),
 
   getModelSelect: publicProcedure.query(async ({ ctx }) => {
