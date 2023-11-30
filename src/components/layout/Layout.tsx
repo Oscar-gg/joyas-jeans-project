@@ -20,6 +20,7 @@ export const Layout = ({
     { name: "Admin", path: "/admin", visibility: "admin" },
     { name: "Nosotros", path: "/nosotros"},
     { name: "AVISO", path: "/aviso"},
+    { name: "contacto", path: "/contacto"},
   ];
 
   return (
