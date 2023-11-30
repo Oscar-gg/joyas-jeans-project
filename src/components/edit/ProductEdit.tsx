@@ -180,6 +180,26 @@ export const ProductEdit = ({
                 />
               </div>
             </div>
+            <div className="my-2">
+              <div className="flex flex-row flex-wrap align-middle">
+                <label htmlFor="price" className={classNameLabel}>
+                  Precio
+                </label>
+                <Field
+                  id="price"
+                  name="price"
+                  type="number"
+                  className={classNameField}
+                />
+              </div>
+              <div className="my-4">
+                <ErrorMessage
+                  component="a"
+                  name="price"
+                  className={classNameError}
+                />
+              </div>
+            </div>
             <div className="mt-2 space-x-4">
               <button
                 type="submit"
