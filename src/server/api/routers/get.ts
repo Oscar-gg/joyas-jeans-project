@@ -87,6 +87,15 @@ export const getRouter = createTRPCRouter({
   getModelById: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
+      const productCount = await ctx.db.product.count({
+        where: {
+          modelId: input.id,
+        },
+        select: {
+          id: true,
+        },
+      });
+
       return await ctx.db.modelName.findUnique({
         where: {
           id: input.id,
@@ -270,4 +279,57 @@ export const getRouter = createTRPCRouter({
 
     return colors.map((colors) => ({ value: colors.id, label: colors.name }));
   }),
+  fitDescription: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const description = await ctx.db.fit.findUnique({
+        where: {
+          id: input.id,
+        },
+        select: {
+          description: true,
+        },
+      });
+
+      return description;
+    }),
+
+  productCount: publicProcedure
+    .input(
+      z.object({ fitId: z.string(), colorId: z.string(), modelId: z.string() }),
+    )
+    .query(async ({ ctx, input }) => {
+      console.log(input);
+      const products = await ctx.db.product.findMany({
+        where: {
+          AND: [
+            {
+              ...(input.fitId !== "" ? { fitId: input.fitId } : {}),
+            },
+            {
+              ...(input.colorId !== "" ? { colorId: input.colorId } : {}),
+            },
+            {
+              ...(input.modelId !== "" ? { model: { id: input.modelId } } : {}),
+            },
+          ],
+        },
+        select: {
+          price: true,
+          availableCount: true,
+        },
+      });
+
+      console.log(products);
+
+      if (products.length === 0) {
+        return 0;
+      }
+
+      if (input.fitId !== "" && input.colorId !== "" && input.modelId !== "") {
+        return products[0];
+      }
+
+      return products.length;
+    }),
 });

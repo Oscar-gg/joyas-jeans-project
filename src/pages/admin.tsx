@@ -1,5 +1,4 @@
 import { Layout } from "~/components/layout/Layout";
-import { useRouter } from "next/router";
 import { api } from "~/utils/api";
 import { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -20,7 +19,6 @@ export default function SponsorsPage() {
   const [seeWindow, setSeeWindow] = useState<WindowTypes>("modelos");
   const [seeModal, setSeeModal] = useState(false);
   const [search, setSearch] = useState("");
-  const router = useRouter();
 
   let modalTitle = "indefinido";
   if (seeWindow) {
