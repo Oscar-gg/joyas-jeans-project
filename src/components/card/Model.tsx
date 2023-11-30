@@ -1,9 +1,9 @@
 import { type RouterOutputs, api } from "~/utils/api";
 
 
-export const Model = ({ modelName }: { modelName: string }) => {
-  const { data: modelInfo } = api.model.getModelByName.useQuery({
-    name: modelName,
+export const Model = ({ modelId }: { modelId: string }) => {
+  const { data: modelInfo } = api.get.getModelById.useQuery({
+    id: modelId,
   });
 
   return (

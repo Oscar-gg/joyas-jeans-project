@@ -85,7 +85,7 @@ export const Navbar = ({
             <div className="flex flex-shrink-0 items-center">
               <img
                 className="h-8 w-auto"
-                src="/Link.png"
+                src="/Logo.jpg"
                 alt="Joyas Jeans"
               />
             </div>
@@ -128,12 +128,6 @@ export const Navbar = ({
           --> */}
                 <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right scale-0 rounded-md bg-white py-1 opacity-0 shadow-lg ring-1 ring-black ring-opacity-5 duration-200 focus:outline-none group-focus-within/profile:scale-100 group-focus-within/profile:opacity-100">
                   {/* <!-- Active: "bg-gray-100", Not Active: "" --> */}
-                  <Link
-                    href="/user"
-                    className="block px-4 py-2 text-sm text-gray-700"
-                  >
-                    Your Profile
-                  </Link>
                   <Link
                     href="#"
                     className="block px-4 py-2 text-sm text-gray-700"
