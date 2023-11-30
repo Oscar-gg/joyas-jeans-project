@@ -1,10 +1,6 @@
 import { Layout } from "~/components/layout/Layout";
-import Select from "react-select";
-
 import { api } from "~/utils/api";
 import { useRouter } from "next/router";
-import ValidImage from "~/components/general/ValidImage";
-import { useState } from "react";
 import type { RouterOutputs } from "~/utils/api";
 import { Model } from "~/components/card/Model";
 

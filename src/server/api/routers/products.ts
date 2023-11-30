@@ -2,7 +2,6 @@ import { z } from "zod";
 
 import {
   createTRPCRouter,
-  protectedProcedure,
   publicProcedure,
   adminProcedure,
 } from "~/server/api/trpc";
@@ -10,10 +9,6 @@ import {
 import { generateData } from "~/utils/load";
 
 export const productRouter = createTRPCRouter({
-  test: publicProcedure.query(() => {
-    return "a";
-  }),
-
   uploadData: adminProcedure.mutation(async ({ ctx }) => {
     try {
       await generateData({ db: ctx.db });

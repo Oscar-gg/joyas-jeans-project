@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import ValidImage from "~/components/general/ValidImage";
 import { useState } from "react";
 
-export default function ModelID() {
+export default function ModelPage() {
   const router = useRouter();
 
   const model = router.query?.modelId as string;

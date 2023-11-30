@@ -1,5 +1,4 @@
 import { Layout } from "~/components/layout/Layout";
-import { api } from "~/utils/api";
 import { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { EditModal } from "~/components/modal/EditModal";

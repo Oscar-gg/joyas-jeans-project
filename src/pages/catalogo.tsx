@@ -1,12 +1,6 @@
 import { Layout } from "~/components/layout/Layout";
-
 import { useState } from "react";
-
 import { SearchBar } from "~/components/general/SearchBar";
-import { ModelTable } from "~/components/table/ModelTable";
-import { ColorTable } from "~/components/table/ColorTable";
-
-import { FitTable } from "~/components/table/FitTable";
 import { ProductTable } from "~/components/table/ProductTable";
 
 export default function CatalogoPage() {

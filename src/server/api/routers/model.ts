@@ -2,12 +2,10 @@ import { z } from "zod";
 
 import {
   createTRPCRouter,
-  protectedProcedure,
-  publicProcedure,
   adminProcedure,
 } from "~/server/api/trpc";
 
-import { generateData } from "~/utils/load";
+// import { generateData } from "~/utils/load";
 
 export const modelRouter = createTRPCRouter({
 

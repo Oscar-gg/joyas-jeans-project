@@ -1,6 +1,3 @@
-import { signIn, signOut, useSession } from "next-auth/react";
-import Head from "next/head";
-import Link from "next/link";
 import { LandingPageBrand } from "~/components/card/LandingPageBrand";
 import { Layout } from "~/components/layout/Layout";
 
