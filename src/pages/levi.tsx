@@ -4,7 +4,7 @@ import { Layout } from "~/components/layout/Layout";
 import { api } from "~/utils/api";
 
 export default function Levi() {
-  const modelsAvailable = api.model.getModelsNames.useQuery({
+  const modelsAvailable = api.get.getModelsIds.useQuery({
     brandName: "LEVI'S",
   });
 
@@ -23,7 +23,7 @@ export default function Levi() {
       </div>
 
       <div className="container mx-auto flex flex-wrap justify-center">
-        {modelsAvailable.data?.map((model) => <Model modelName={model.name} />)}
+        {modelsAvailable.data?.map((model) => <Model modelId={model.id} />)}
       </div>
     </Layout>
   );

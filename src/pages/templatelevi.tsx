@@ -6,46 +6,13 @@ import { Layout } from "~/components/layout/Layout";
 import { api } from "~/utils/api";
 
 export default function Home() {
-  const hello = api.post.hello.useQuery({ text: "from tRPC" });
   const mutation = api.product.uploadData.useMutation();
 
   return (
     <Layout>
-
-       <div className="flex items-center justify-center pt-3"> 
-        <h1 className="text-4xl font-semibold p-3 m-3 head">JEAN MODEL</h1>
-        </div>
-
-
-        
-
-
-
-    
+      <div className="flex items-center justify-center pt-3">
+        <h1 className="head m-3 p-3 text-4xl font-semibold">JEAN MODEL</h1>
+      </div>
     </Layout>
-  );
-}
-
-function AuthShowcase() {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.post.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
   );
 }

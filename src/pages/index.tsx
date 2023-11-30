@@ -6,9 +6,6 @@ import { Layout } from "~/components/layout/Layout";
 import { api } from "~/utils/api";
 
 export default function Home() {
-  const hello = api.post.hello.useQuery({ text: "from tRPC" });
-  const mutation = api.product.uploadData.useMutation();
-
   return (
     <Layout>
       <section className="flex h-screen flex-col items-center justify-center bg-gray-900 text-white md:flex-row">
@@ -32,7 +29,7 @@ export default function Home() {
 
       <div className="container mx-auto flex flex-wrap justify-center">
         <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
-          <a href="">
+          <a href="/levi">
             <div className="card rounded-lg bg-white p-6 shadow-lg">
               <h2 className="mb-2 justify-center text-xl font-semibold">
                 SHOP LEVIS
@@ -47,7 +44,7 @@ export default function Home() {
         </div>
 
         <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
-          <a href="">
+          <a href="/wrangler">
             <div className="card rounded-lg bg-white p-6 shadow-lg">
               <h2 className="mb-2 justify-center text-xl font-semibold">
                 SHOP WRANGLER
@@ -62,7 +59,7 @@ export default function Home() {
         </div>
 
         <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
-          <a href="">
+          <a href="/rustler">
             <div className="card rounded-lg bg-white p-6 shadow-lg">
               <h2 className="mb-2 justify-center text-xl font-semibold">
                 SHOP RUSTLER
@@ -77,7 +74,7 @@ export default function Home() {
         </div>
 
         <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
-          <a href="">
+          <a href="/george">
             <div className="card rounded-lg bg-white p-6 shadow-lg">
               <h2 className="mb-2 justify-center text-xl font-semibold">
                 SHOP GEORGE
@@ -92,29 +89,5 @@ export default function Home() {
         </div>
       </div>
     </Layout>
-  );
-}
-
-function AuthShowcase() {
-  const { data: sessionData } = useSession();
-
-  const { data: secretMessage } = api.post.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined },
-  );
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-center text-2xl text-white">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
   );
 }

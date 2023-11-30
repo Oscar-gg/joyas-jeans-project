@@ -4,7 +4,7 @@ import { Layout } from "~/components/layout/Layout";
 import { api } from "~/utils/api";
 
 export default function Wrangler() {
-  const modelsAvailable = api.model.getModelsNames.useQuery({
+  const modelsAvailable = api.get.getModelsIds.useQuery({
     brandName: "WRANGLER",
   });
 
@@ -19,11 +19,13 @@ export default function Wrangler() {
       </div>
 
       <div className="flex items-center justify-center pt-3">
-        <h1 className="head m-3 p-3 text-4xl font-semibold">Levi Modelos</h1>
+        <h1 className="head m-3 p-3 text-4xl font-semibold">
+          Wrangler Modelos
+        </h1>
       </div>
 
       <div className="container mx-auto flex flex-wrap justify-center">
-        {modelsAvailable.data?.map((model) => <Model modelName={model.name} />)}
+        {modelsAvailable.data?.map((model) => <Model modelId={model.id} />)}
       </div>
     </Layout>
   );
