@@ -15,18 +15,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(sequence())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
-}
-
 model Account {
     id                       String  @id @default(cuid())
     userId                   String
@@ -64,7 +52,6 @@ model User {
     role          String?
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
 }
 
 model VerificationToken {
@@ -93,8 +80,6 @@ model Product {
     color   Color     @relation(fields: [colorId], references: [id])
     fitId   String
     fit     Fit       @relation(fields: [fitId], references: [id])
-    brandId String
-    brand   Brand     @relation(fields: [brandId], references: [id])
     modelId String
     model   ModelName @relation(fields: [modelId], references: [name])
 
@@ -106,10 +91,10 @@ model Brand {
     id        String      @id @default(cuid())
     name      String      @unique
     modelName ModelName[]
-    product   Product[]
 }
 
 model ModelName {
+    id      String    @id @default(cuid())
     name    String    @unique
     brandId String
     brand   Brand     @relation(fields: [brandId], references: [id])
@@ -118,14 +103,14 @@ model ModelName {
 }
 
 model Color {
-    id       String    @id @default(cuid())
-    name     String    @unique
-    products Product[]
+    id      String    @id @default(cuid())
+    name    String    @unique
+    product Product[]
 }
 
 model Fit {
     id          String    @id @default(cuid())
     name        String    @unique
     description String
-    Product     Product[]
+    product     Product[]
 }
