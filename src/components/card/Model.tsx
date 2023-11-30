@@ -1,5 +1,5 @@
 import { type RouterOutputs, api } from "~/utils/api";
-
+import ValidImage from "~/components/general/ValidImage";
 
 export const Model = ({ modelId }: { modelId: string }) => {
   const { data: modelInfo } = api.get.getModelById.useQuery({
@@ -12,8 +12,8 @@ export const Model = ({ modelId }: { modelId: string }) => {
         <a href="/templatelevi">
           <div className="card rounded-lg bg-white p-6 shadow-lg">
             <h2 className="mb-2 text-xl font-semibold">{modelInfo.name}</h2>
-            <img
-              src="https://levimx.vtexassets.com/arquivos/ids/859243-1200-auto?v=638332781020370000&width=1200&height=auto&aspect=true"
+            <ValidImage
+              src={modelInfo.image ?? ""}
               alt="Product 1"
               className="mb-4"
             />
