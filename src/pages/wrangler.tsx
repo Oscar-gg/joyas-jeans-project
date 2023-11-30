@@ -25,7 +25,7 @@ export default function Wrangler() {
       </div>
 
       <div className="container mx-auto flex flex-wrap justify-center">
-        {modelsAvailable.data?.map((model) => <Model modelId={model.id} />)}
+        {modelsAvailable.data?.map((model) => <Model modelId={model.id} key={model.id} />)}
       </div>
     </Layout>
   );

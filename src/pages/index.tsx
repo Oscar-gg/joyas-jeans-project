@@ -29,7 +29,7 @@ export default function Home() {
 
       <div className="container mx-auto flex flex-wrap justify-center">
         <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
-          <a href="/levi">
+          <Link href="/levi">
             <div className="card rounded-lg bg-white p-6 shadow-lg">
               <h2 className="mb-2 justify-center text-xl font-semibold">
                 SHOP LEVIS
@@ -40,11 +40,11 @@ export default function Home() {
                 alt=""
               />
             </div>
-          </a>
+          </Link>
         </div>
 
         <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
-          <a href="/wrangler">
+          <Link href="/wrangler">
             <div className="card rounded-lg bg-white p-6 shadow-lg">
               <h2 className="mb-2 justify-center text-xl font-semibold">
                 SHOP WRANGLER
@@ -55,11 +55,11 @@ export default function Home() {
                 alt=""
               />
             </div>
-          </a>
+          </Link>
         </div>
 
         <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
-          <a href="/rustler">
+          <Link href="/rustler">
             <div className="card rounded-lg bg-white p-6 shadow-lg">
               <h2 className="mb-2 justify-center text-xl font-semibold">
                 SHOP RUSTLER
@@ -70,11 +70,11 @@ export default function Home() {
                 alt=""
               />
             </div>
-          </a>
+          </Link>
         </div>
 
         <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">
-          <a href="/george">
+          <Link href="/george">
             <div className="card rounded-lg bg-white p-6 shadow-lg">
               <h2 className="mb-2 justify-center text-xl font-semibold">
                 SHOP GEORGE
@@ -85,7 +85,7 @@ export default function Home() {
                 alt=""
               />
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </Layout>
