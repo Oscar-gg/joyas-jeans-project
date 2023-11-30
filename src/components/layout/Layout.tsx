@@ -24,6 +24,7 @@ export const Layout = ({
         { name: "Catálogo", path: "/catalogo" },
         { name: "Nosotros", path: "/nosotros" },
         { name: "AVISO", path: "/aviso" },
+        { name: "Contacto", path: "/contacto" },
         { name: "Admin", path: "/admin", visibility: "admin" },
       ]
     : [
@@ -31,6 +32,7 @@ export const Layout = ({
         { name: "Catálogo", path: "/catalogo" },
         { name: "Nosotros", path: "/nosotros" },
         { name: "AVISO", path: "/aviso" },
+        { name: "Contacto", path: "/contacto" },
         { name: "Admin", path: "/admin", visibility: "admin" },
       ];
 
