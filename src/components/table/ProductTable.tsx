@@ -3,16 +3,30 @@ import { api } from "~/utils/api";
 import { EditModal } from "../modal/EditModal";
 import { ProductEdit } from "../edit/ProductEdit";
 
-export const ProductTable = ({ search }: { search?: string }) => {
+export const ProductTable = ({
+  search,
+  edit,
+  onlySold,
+}: {
+  search?: string;
+  edit?: boolean;
+  onlySold?: boolean;
+}) => {
   const { data: products, isLoading } = api.get.getProductsIds.useQuery({
     search: search,
+    onlySold: onlySold,
   });
 
   if (isLoading) {
     return <div>Cargando...</div>;
   } else if (!products || products.length === 0) {
-    return <div>No se encontraron datos</div>;
+    return <div>No se encontraron productos</div>;
   }
+
+  const headerSold = onlySold ? "Vendidos" : "Disponibles";
+  const headers = edit
+    ? ["Id", "Marca", "Modelo", "Color", "Fit", headerSold, "Modificar"]
+    : ["Id", "Marca", "Modelo", "Color", "Fit", headerSold];
 
   return (
     <div className="relative overflow-x-auto">
@@ -28,7 +42,12 @@ export const ProductTable = ({ search }: { search?: string }) => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <TableRow key={product.id} itemId={product.id} />
+            <TableRow
+              key={product.id}
+              itemId={product.id}
+              edit={edit}
+              onlySold={onlySold}
+            />
           ))}
         </tbody>
       </table>
@@ -36,17 +55,15 @@ export const ProductTable = ({ search }: { search?: string }) => {
   );
 };
 
-const headers = [
-  "Id",
-  "Marca",
-  "Modelo",
-  "Color",
-  "Fit",
-  "Disponibles",
-  "Modificar",
-];
-
-const TableRow = ({ itemId }: { itemId: string }) => {
+const TableRow = ({
+  itemId,
+  edit,
+  onlySold,
+}: {
+  itemId: string;
+  edit?: boolean;
+  onlySold?: boolean;
+}) => {
   const { data: rowData, isLoading } = api.get.getProductById.useQuery({
     id: itemId,
   });
@@ -83,17 +100,21 @@ const TableRow = ({ itemId }: { itemId: string }) => {
       <td className="px-6 py-4">{rowData.model.name}</td>
       <td className="px-6 py-4">{rowData.color.name}</td>
       <td className="px-6 py-4">{rowData.fit.name}</td>
-      <td className="px-6 py-4">{rowData.availableCount}</td>
       <td className="px-6 py-4">
-        <button
-          onClick={() => {
-            setSeeModal(true);
-          }}
-          className="rounded-lg bg-green-200 p-2"
-        >
-          Editar
-        </button>
+        {onlySold ? rowData.soldCount : rowData.availableCount}
       </td>
+      {edit && (
+        <td className="px-6 py-4">
+          <button
+            onClick={() => {
+              setSeeModal(true);
+            }}
+            className="rounded-lg bg-green-200 p-2"
+          >
+            Editar
+          </button>
+        </td>
+      )}
     </tr>
   );
 };

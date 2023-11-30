@@ -239,56 +239,55 @@ export const getRouter = createTRPCRouter({
     .input(
       z.object({
         search: z.string().optional(),
+        onlySold: z.boolean().optional(),
       }),
     )
     .query(async ({ ctx, input }) => {
       return await ctx.db.product.findMany({
         where: {
-          OR: [
+          AND: [
             {
-              fit: {
-                name: { contains: input.search ?? "", mode: "insensitive" },
-              },
-            },
-            {
-              color: {
-                name: { contains: input.search ?? "", mode: "insensitive" },
-              },
-            },
-            {
-              model: {
-                OR: [
-                  {
-                    name: {
-                      contains: input.search ?? "",
-                      mode: "insensitive",
-                    },
+              OR: [
+                {
+                  fit: {
+                    name: { contains: input.search ?? "", mode: "insensitive" },
                   },
-                  {
-                    brand: {
-                      name: {
-                        contains: input.search ?? "",
-                        mode: "insensitive",
+                },
+                {
+                  color: {
+                    name: { contains: input.search ?? "", mode: "insensitive" },
+                  },
+                },
+                {
+                  model: {
+                    OR: [
+                      {
+                        name: {
+                          contains: input.search ?? "",
+                          mode: "insensitive",
+                        },
                       },
-                    },
+                      {
+                        brand: {
+                          name: {
+                            contains: input.search ?? "",
+                            mode: "insensitive",
+                          },
+                        },
+                      },
+                    ],
                   },
-                ],
-              },
+                },
+              ],
+            },
+            {
+              ...(input.onlySold ? { soldCount: { gt: 0 } } : {}),
             },
           ],
         },
         select: {
           id: true,
         },
-        orderBy: [
-          {
-            fitId: "asc",
-          },
-          {
-            colorId: "asc",
-          },
-          { modelId: "asc" },
-        ],
       });
     }),
 

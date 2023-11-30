@@ -12,8 +12,6 @@ export const LandingPageBrand = ({ brandId }: { brandId: string }) => {
     brandId: brandId,
   });
 
-  console.log(brandInfo?.image)
-
   return (
     brandInfo && (
       <div className="w-full max-w-xs px-4 py-4 transition duration-300 ease-in-out hover:scale-110 sm:w-1/2 md:w-1/4">

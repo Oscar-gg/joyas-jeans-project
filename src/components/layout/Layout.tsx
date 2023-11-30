@@ -21,10 +21,12 @@ export const Layout = ({
         { name: "Home", path: "/" },
 
         ...brandRoutes,
+        { name: "Catálogo", path: "/catalogo" },
         { name: "Admin", path: "/admin", visibility: "admin" },
       ]
     : [
         { name: "Home", path: "/" },
+        { name: "Catálogo", path: "/catalogo" },
         { name: "Admin", path: "/admin", visibility: "admin" },
       ];
 

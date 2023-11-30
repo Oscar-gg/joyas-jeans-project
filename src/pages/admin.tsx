@@ -13,9 +13,9 @@ import { FitEdit } from "~/components/edit/FitEdit";
 import { FitTable } from "~/components/table/FitTable";
 import { ProductTable } from "~/components/table/ProductTable";
 
-type WindowTypes = "modelos" | "colores" | "fit" | "productos";
+type WindowTypes = "modelos" | "colores" | "fit" | "productos" | "historial";
 
-export default function SponsorsPage() {
+export default function AdminPage() {
   const [seeWindow, setSeeWindow] = useState<WindowTypes>("modelos");
   const [seeModal, setSeeModal] = useState(false);
   const [search, setSearch] = useState("");
@@ -73,6 +73,14 @@ export default function SponsorsPage() {
           >
             Productos
           </button>
+          <button
+            className="h-fit rounded-md bg-slate-200 p-2 duration-500 hover:bg-slate-300"
+            onClick={() => {
+              setSeeWindow("historial");
+            }}
+          >
+            Historial
+          </button>
           <SearchBar setSearch={setSearch} className="w-80" />
         </div>
       </div>
@@ -129,7 +137,13 @@ const PageContent = ({
   } else if (windowType === "productos") {
     return (
       <div className="justify-center text-center text-2xl">
-        <ProductTable search={search} />
+        <ProductTable search={search} edit={true} />
+      </div>
+    );
+  } else if (windowType === "historial") {
+    return (
+      <div className="justify-center text-center text-2xl">
+        <ProductTable search={search} edit={false} onlySold={true} />
       </div>
     );
   }
@@ -138,47 +152,3 @@ const PageContent = ({
     <p>Error, no se encontró el tipo de ventana especificado: {windowType}</p>
   );
 };
-
-// const SponsorContainer = ({ search }: { search: string }) => {
-//   const { data: sponsors, isLoading } = api.sponsor.getSponsorsIds.useQuery({
-//     search: search,
-//   });
-
-//   if (isLoading) {
-//     return <p>Cargando...</p>;
-//   } else if (!sponsors || sponsors.length === 0) {
-//     return <p className="text-black">No hay sponsors D:</p>;
-//   }
-
-//   return (
-//     <div className="flex w-full flex-row flex-wrap justify-center">
-//       {sponsors?.map((sponsor) => (
-//         <SponsorWrapper key={sponsor.id} sponsorId={sponsor.id} />
-//       ))}
-//     </div>
-//   );
-// };
-
-// const SponsorPackContainer = ({ search }: { search: string }) => {
-//   const { data: sponsorPacks, isLoading } =
-//     api.sponsor.getSponsorPacksIds.useQuery({
-//       search: search,
-//     });
-
-//   if (isLoading) {
-//     return <p>Cargando...</p>;
-//   } else if (!sponsorPacks || sponsorPacks.length === 0) {
-//     return <p className="text-black">No hay sponsor packs D:</p>;
-//   }
-
-//   return (
-//     <div className="flex w-full flex-row flex-wrap justify-center">
-//       {sponsorPacks?.map((sponsorPack) => (
-//         <SponsorPackWrapper
-//           key={sponsorPack.id}
-//           sponsorPackId={sponsorPack.id}
-//         />
-//       ))}
-//     </div>
-//   );
-// };
