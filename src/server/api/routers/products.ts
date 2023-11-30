@@ -53,12 +53,12 @@ export const productRouter = createTRPCRouter({
           AND: [
             {
               price: {
-                gte: input.minPrice ?? 0,
+                ...(input.minPrice ? { gte: input.minPrice } : {}),
               },
             },
             {
               price: {
-                lte: input.maxPrice ?? 100000000,
+                ...(input.maxPrice ? { lte: input.maxPrice } : {}),
               },
             },
             {
@@ -69,11 +69,6 @@ export const productRouter = createTRPCRouter({
             {
               fitId: {
                 contains: input.fitID ?? "",
-              },
-            },
-            {
-              brandId: {
-                contains: input.brandId ?? "",
               },
             },
             {
@@ -99,7 +94,6 @@ export const productRouter = createTRPCRouter({
         description: z.string(),
         colorId: z.string(),
         fitId: z.string(),
-        brandId: z.string(),
         modelId: z.string(),
         image: z.string(),
         availableCount: z.number(),
@@ -115,7 +109,6 @@ export const productRouter = createTRPCRouter({
           price: input.price,
           colorId: input.colorId,
           fitId: input.fitId,
-          brandId: input.brandId,
           modelId: input.modelId,
           availableCount: input.availableCount,
           soldCount: input.soldCount,

@@ -10,39 +10,7 @@ import {
 import { generateData } from "~/utils/load";
 
 export const modelRouter = createTRPCRouter({
-  getModelsNames: publicProcedure
-    .input(z.object({ brandName: z.string().optional() }))
-    .query(async ({ ctx, input }) => {
-      return await ctx.db.modelName.findMany({
-        where: {
-          brand: {
-            name: { contains: input.brandName ?? "" },
-          },
-        },
-        select: {
-          name: true,
-        },
-      });
-    }),
 
-  getModelByName: publicProcedure
-    .input(z.object({ name: z.string() }))
-    .query(async ({ ctx, input }) => {
-      return await ctx.db.modelName.findUnique({
-        where: {
-          name: input.name,
-        },
-        select: {
-          name: true,
-          _count: {
-            select: {
-              product: true,
-            },
-          },
-          image: true,
-        },
-      });
-    }),
   modifyProduct: adminProcedure
     .input(
       z.object({
@@ -67,7 +35,6 @@ export const modelRouter = createTRPCRouter({
           price: input.price,
           colorId: input.colorId,
           fitId: input.fitId,
-          brandId: input.brandId,
           modelId: input.modelId,
           availableCount: input.availableCount,
           soldCount: input.soldCount,
